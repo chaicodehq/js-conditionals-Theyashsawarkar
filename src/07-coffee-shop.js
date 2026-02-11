@@ -31,5 +31,28 @@
  * @returns {number} Total price or -1 for invalid input
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
-  // Your code here
+  const basePrice = {
+    small: 3,
+    medium: 4,
+    large: 5
+  }
+
+  const addOns = {
+    regular: 0,
+    latte: 1,
+    cappuccino: 1.50,
+    mocha: 2
+  }
+
+  const extrasV = {
+    whippedCream: 0.50,
+    extraShot: 0.75
+  }
+
+  if (!Object.keys(basePrice).includes(size)) return -1;
+  if (!Object.keys(addOns).includes(type)) return -1;
+
+  let sum = basePrice[size] + addOns[type] + (extras?.extraShot ? 0.75 : 0) + (extras?.whippedCream ? 0.50 : 0);
+
+  return +(sum.toFixed(2));
 }

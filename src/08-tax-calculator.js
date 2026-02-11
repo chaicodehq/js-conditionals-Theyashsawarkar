@@ -26,5 +26,28 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  // Your code here
+  if (income <= 0) return 0;
+
+  let tax = 0;
+
+  // Bracket 2: 10%
+  if (income > 10000) {
+    const taxable = Math.min(income, 30000) - 10000;
+    tax += taxable * 0.10;
+  }
+
+  // Bracket 3: 20%
+  if (income > 30000) {
+    const taxable = Math.min(income, 70000) - 30000;
+    tax += taxable * 0.20;
+  }
+
+  // Bracket 4: 30%
+  if (income > 70000) {
+    const taxable = income - 70000;
+    tax += taxable * 0.30;
+  }
+
+  return +tax.toFixed(2);
 }
+
